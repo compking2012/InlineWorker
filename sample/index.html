@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TestApp1</title>
+  <!-- We don't need localization in this app -->
+  <!--<link rel="stylesheet" type="text/css" href="style/uitest.css">
+  <script type="text/javascript" src="js/uitest.js"></script>-->
+</head>
+<body>
+  <button id="startworker">Start worker</button>
+  <p id="result"></p>
+  <script src="../src/inlineworker.js"></script> 
+  <script>
+  	document.getElementById("startworker").addEventListener("click", function onClick() {
+	  	var worker = new YY.InlineWorker(function() {
+
+	  		// Do something parallelly
+	  		
+	  		// Return result
+	  		postMessage("done");
+	  	}, function onComplete(result) {
+	  		
+	  		document.getElementById("result").innerHTML = result;
+	  	
+	  	}, function onError() {
+
+
+	  	});
+  	});
+  </script>
+</body>
+</html>
